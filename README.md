@@ -3,35 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Documentación Think & Job v1.1</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 2rem;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
-    h1, h2, h3 {
-      color: #1e40af;
-    }
-    code, pre {
-      background: #f1f5f9;
-      padding: 0.3em 0.6em;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-    pre {
-      padding: 1em;
-      overflow-x: auto;
-    }
-    .section {
-      margin-bottom: 2rem;
-    }
-    ul {
-      margin-top: 0.5em;
-    }
-  </style>
+  
 </head>
 <body>
   <h1>📄 Documentación Think & Job v1.1</h1>
