@@ -57,13 +57,13 @@ export const Sidebar = () => {
                 ></div>
             )}
 
-            <aside id="sidebar-multi-level-sidebar" className={`fixed top-30 left-0 z-40 w-64 h-screen transition-transform ${isOpen ? 'transform-none' : '-translate-x-full'
+            <aside id="sidebar-multi-level-sidebar" className={`fixed top-27.5 left-0 z-40 w-64 h-screen transition-transform ${isOpen ? 'transform-none' : '-translate-x-full'
                 } sm:translate-x-0`}
                 aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-100">
+                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-gray-700 group">
+                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-400 group">
                                 <svg className="w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
@@ -74,7 +74,7 @@ export const Sidebar = () => {
                         <li>
                             <button type="button" onClick={toggleDropdown} className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-amber-400 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                                 <svg
-                                    className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-yellow-400 dark:group-hover:text-yellow-300"
+                                    className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-yellow-300"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export const Sidebar = () => {
 
 
                                 <span className="flex-1 ms-3 pr-2 text-left rtl:text-right whitespace-nowrap">Incidencias</span>
-                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 mr-3 ms-3 text-sm font-medium text-amber-600 bg-amber-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 mr-3 ms-3 text-sm font-medium text-amber-600 bg-amber-100 rounded-full dark:bg-amber-500 dark:text-amber-100">3</span>
                                 <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                 </svg>
@@ -125,7 +125,7 @@ export const Sidebar = () => {
 
 
                                 <span className="flex-1 ms-3 pr-2 text-left rtl:text-right whitespace-nowrap ">Horas extra</span>
-                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 mr-3 ms-3 text-sm font-medium text-amber-600 bg-amber-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 mr-3 ms-3 text-sm font-medium text-amber-600 bg-amber-100 rounded-full dark:bg-amber-500 dark:text-amber-100">3</span>
                                 <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                                 </svg>
@@ -156,10 +156,18 @@ export const Sidebar = () => {
                                 <svg className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                                     <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                                 </svg>
-                                <span className="flex ml-3  whitespace-nowrap">Users</span>
+                                <span className="flex ml-3  whitespace-nowrap">Personal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" className="flex items-start p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-gray-700 group">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#6A7282"><path d="M680-120q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm-30-280v-80h60v80h-60Zm0 400v-80h60V0h-60Zm165-333-43-42 57-57 42 43-56 56ZM531-49l-42-42 57-57 42 42-57 57Zm309-161v-60h80v60h-80Zm-400 0v-60h80v60h-80ZM829-49l-56-57 42-42 57 56-43 43ZM545-332l-56-57 42-42 57 56-43 43ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v160H200v400h160v80H200Zm0-560h560v-80H200v80Zm0 0v-80 80Z"/>
+                        </svg>
+                                <span className="flex ml-3  whitespace-nowrap">Vacaciones y permisos</span>
                             </a>
                         </li>
 
+                        
                     </ul>
                 </div>
             </aside>

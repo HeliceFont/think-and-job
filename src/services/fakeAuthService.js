@@ -11,18 +11,41 @@ const users = [
     },
     {
         id: 2,
-        email: 'manager@test.com',
-        password: bcrypt.hashSync('manager123', 10),
-        role: 'manager',
-        name: 'Manager User'
+        email: 'supermaster@test.com',
+        password: bcrypt.hashSync('supermaster123', 10),
+        role: 'supermaster',
+        name: 'supermaster User'
     },
     {
         id: 3,
-        email: 'employee@test.com',
-        password: bcrypt.hashSync('employee123', 10),
-        role: 'employee',
-        name: 'Employee User'
-    }
+        email: 'master@test.com',
+        password: bcrypt.hashSync('master123', 10),
+        role: 'master',
+        name: 'master User'
+    },
+    {
+        id: 4,
+        email: 'encargado@test.com',
+        password: bcrypt.hashSync('encargado123', 10),
+        role: 'encargado',
+        name: 'encargado User'
+    },
+    {
+        id: 5,
+        email: 'colaborador@test.com',
+        password: bcrypt.hashSync('colaborador123', 10),
+        role: 'colaborador',
+        name: 'colaborador User'
+    },
+    {
+        id: 6,
+        email: 'candidato@test.com',
+        password: bcrypt.hashSync('candidato123', 10),
+        role: 'candidato',
+        name: 'candidato User'
+    },
+    
+    
 ]
 
 export const fakeAuthService = async ({ email, password }) => {

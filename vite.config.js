@@ -15,5 +15,20 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    base: '/', // Asegúrate de que esto esté configurado correctamente
+  build: {
+    outDir: 'dist',
+    copyPublicDir: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  server: {
+    historyApiFallback: true
+  },
+  publicDir: 'public',
   },
 })

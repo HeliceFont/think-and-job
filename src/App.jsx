@@ -7,11 +7,13 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
 import AdminDashboard from './pages/AdminDashboard'
-import ManagerDashboard from './pages/ManagerDashboard'
-import EmployeeDashboard from './pages/EmployeeDashboard'
+import ManagerDashboard from './pages/EncargadoDashboard'
+import ColaboradorDashboard from './pages/ColaboradorDashboard'
 
-import ExampleDashboard from './components/ExampleDashboard'
+import CandidatoDashboard from './pages/CandidatoDashboard'
 import { Footer } from './components/Footer'
+import EncargadoDashboard from './pages/EncargadoDashboard'
+import SuperMasterDashboard from './pages/SuperMasterDashboard'
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, isAuthenticated } = useAuth()
@@ -49,7 +51,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <div className="min-h-screen flex flex-col">
           <div className="flex-grow">
             <Routes>
@@ -64,18 +66,43 @@ function App() {
                 }
               />
               <Route
-                path="/manager"
+                path="/supermaster"
                 element={
-                  <ProtectedRoute allowedRoles={['manager']}>
-                    <ManagerDashboard />
+                  <ProtectedRoute allowedRoles={['supermaster']}>
+                    <SuperMasterDashboard />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path="/employee"
+                path="/master"
                 element={
-                  <ProtectedRoute allowedRoles={['employee']}>
-                    <EmployeeDashboard />
+                  <ProtectedRoute allowedRoles={['master']}>
+                    <SuperMasterDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/encargado"
+                element={
+                  <ProtectedRoute allowedRoles={['encargado']}>
+                    <EncargadoDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/colaborador"
+                element={
+                  <ProtectedRoute allowedRoles={['colaborador']}>
+                    <ColaboradorDashboard  />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/candidato"
+                element={
+                  <ProtectedRoute allowedRoles={['candidato']}>
+                    {/* cambiar a dashboard candidato */}
+                    <CandidatoDashboard />
                   </ProtectedRoute>
                 }
               />

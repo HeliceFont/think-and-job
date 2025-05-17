@@ -15,7 +15,7 @@ const LandingPage = () => {
           <div className="mt-8">
             <Link
               to="/login"
-              className="inline-block bg-amber-500 text-white px-6 py-3 rounded-md font-medium hover:bg-amber-600"
+              className="inline-block bg-amber-400 text-white px-6 py-3 rounded-md font-medium hover:bg-amber-500 hover:text-teal-900 transition duration-200"
             >
               Iniciar Sesión
             </Link>

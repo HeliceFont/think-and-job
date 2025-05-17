@@ -26,7 +26,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function ExampleDashboard() {
+export default function DashboardCandidato() {
     return (
         <>
             {/* This example requires updating your template:
@@ -42,7 +42,7 @@ export default function ExampleDashboard() {
                                     <img
                                         alt="Your Company"
                                         src={favicon}
-                                        className="size-30 mb-3.5"
+                                        className="size-40 md:size-50 mb-3.5"
                                     />
                                 </div>
                                 <div className="hidden md:block">

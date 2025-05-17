@@ -24,11 +24,14 @@ const Login = () => {
                 case 'admin':
                     navigate('/admin')
                     break
-                case 'manager':
-                    navigate('/manager')
+                case 'encargado':
+                    navigate('/encargado')
                     break
-                case 'employee':
-                    navigate('/employee')
+                case 'colaborador':
+                    navigate('/colaborador')
+                    break
+                case 'candidato':
+                    navigate('/candidato')
                     break
                 default:
                     navigate('/')
@@ -40,14 +43,14 @@ const Login = () => {
     }
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <section className="bg-gray-50 dark:bg-gray-900 pt-0 pb-0 sm:pt-0 sm:pb-0 md:pt-10 md:pb-12">
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-theme(spacing.32))] px-4 mx-auto">
                 <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img className="w-8 h-8 mr-2" src={favicon} alt="logo" />
                     Think & Job
                 </Link>
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="p-6 mb-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Inicia sesión en tu cuenta
                         </h1>
@@ -105,19 +108,19 @@ const Login = () => {
                                         </label>
                                     </div>
                                 </div>
-                                <a href="#" className="text-sm font-medium text-amber-600 hover:underline dark:text-amber-500">
+                                <a href="#" className="text-sm font-medium text-amber-500 hover:underline dark:text-amber-500">
                                     ¿Olvidaste tu contraseña?
                                 </a>
                             </div>
                             <button
                                 type="submit"
-                                className="w-full text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
+                                className="w-full text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
                             >
                                 Iniciar sesión
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 ¿Aún no tienes cuenta?{' '}
-                                <Link to="/register" className="font-medium text-amber-600 hover:underline dark:text-amber-500">
+                                <Link to="/register" className="font-medium text-amber-500 hover:underline dark:text-amber-500">
                                     Regístrate
                                 </Link>
                             </p>
