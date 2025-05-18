@@ -60,7 +60,7 @@ export const fakeAuthService = async ({ email, password }) => {
 
     // Debug logs
     console.log('Debug password:', {
-        providedPassword: password,
+        
         storedHash: user.password,
         isMatch: bcrypt.compareSync(password, user.password)
     })

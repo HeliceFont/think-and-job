@@ -27,7 +27,9 @@ export default defineConfig({
     }
   },
   server: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    host: true,
+    strictPort: true,
   },
   publicDir: 'public',
   },

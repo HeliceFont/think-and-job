@@ -1,21 +1,19 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /think-and-job/  # Ajusta esto a tu ruta base
+    # Cambiar a la ruta correcta de tu subdominio
+    RewriteBase / 
 
+    # Permitir CORS
+    Header set Access-Control-Allow-Origin "*"
+    
     # Permitir archivos y directorios existentes
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
     # Redirigir todas las solicitudes a index.html
     RewriteRule ^(.*)$ index.html [QSA,L]
-
-    # Configuración de headers para caché y seguridad
-    <IfModule mod_headers.c>
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires 0
-    </IfModule>
 </IfModule>
 
-# Manejo de errores
-ErrorDocument 404 /404.html
+# Manejo de errores personalizado
+ErrorDocument 403 /index.html
+ErrorDocument 404 /index.html

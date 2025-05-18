@@ -34,7 +34,7 @@ export default function DashboardCandidato() {
         <body className="h-full">
       */}
             <div className="min-h-full sticky ">
-                <Disclosure as="nav" className="bg-teal-900 block fixed w-full dark:bg-gray-900">
+                <Disclosure as="nav" className="bg-teal-900/75 block fixed w-full dark:bg-gray-900 backdrop-blur-md">
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
                         <div className="flex h-28 items-center justify-between backdrop-blur-m ">
                             <div className="flex items-center ">
@@ -42,7 +42,7 @@ export default function DashboardCandidato() {
                                     <img
                                         alt="Your Company"
                                         src={favicon}
-                                        className="size-40 md:size-50 mb-3.5"
+                                        className="size-30 md:size-50 mb-3.5"
                                     />
                                 </div>
                                 <div className="hidden md:block">
