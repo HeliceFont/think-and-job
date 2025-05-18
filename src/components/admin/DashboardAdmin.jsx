@@ -1,8 +1,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import favicon from '@/assets/logo3B.svg'
-// Corregir la importación del SidebarCandidato
-import { SidebarCandidato } from './SidebarCandidato'
+// Eliminar la importación innecesaria de SidebarCandidato
+import { SidebarAdmin } from './SidebarAdmin'
 
 
 const user = {
@@ -28,7 +28,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function DashboardCandidato() {
+export default function DashboardAdmin() {
     return (
         <>
             {/* This example requires updating your template:
@@ -217,7 +217,7 @@ export default function DashboardCandidato() {
                     </div>
                 </header> */}
                 <main>
-                    <SidebarCandidato />
+                    <SidebarAdmin /> {/* Usar solo el SidebarAdmin */}
                 </main>
             </div>
         </>

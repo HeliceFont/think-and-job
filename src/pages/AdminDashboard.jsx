@@ -1,7 +1,8 @@
 import React from 'react'
 
-import ExampleDashboard from '../components/ExampleDashboard'
+import ExampleDashboard from '@/components/ExampleDashboard'
 import { useAuth } from '@/context/AuthContext';
+import DashboardAdmin from '@/components/admin/DashboardAdmin';
 
 const AdminDashboard = () => {
     const { user } = useAuth();
@@ -9,7 +10,7 @@ const AdminDashboard = () => {
     return (
         <div>
 
-            <ExampleDashboard />
+            <DashboardAdmin />
             <h1 className="text-2xl font-semibold text-gray-900">
                 Panel de Admin
             </h1>

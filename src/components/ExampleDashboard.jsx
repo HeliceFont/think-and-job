@@ -1,7 +1,7 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import favicon from '../assets/logo3B.svg'
-import { Sidebar } from './Sidebar'
+import favicon from '@/assets/logo3B.svg'
+import { Sidebar } from '@/components/Sidebar'
 
 const user = {
     name: 'Tom Cook',
@@ -139,11 +139,6 @@ export default function ExampleDashboard() {
                                                             active ? 'bg-gray-100' : '',
                                                             'block px-4 py-2 text-sm text-gray-700'
                                                         )}
-                                                        onClick={() => {
-                                                            if (item.name === 'Your Profile') {
-                                                                // Aquí puedes agregar la lógica para abrir el sidebar
-                                                            }
-                                                        }}
                                                     >
                                                         {item.name}
                                                     </a>

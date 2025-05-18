@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
-import favicon from '../assets/logo.svg' // Asegúrate de importar tu logo
+import favicon from '@/assets/logo.svg' // Asegúrate de importar tu logo
 
 const Login = () => {
     const { login } = useAuth()

@@ -1,19 +1,19 @@
 import React from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './context/AuthContext'
+import { AuthProvider, useAuth } from '@/context/AuthContext'
 
 
-import LandingPage from './pages/LandingPage'
-import Login from './pages/Login'
-import AdminDashboard from './pages/AdminDashboard'
-import ManagerDashboard from './pages/EncargadoDashboard'
-import ColaboradorDashboard from './pages/ColaboradorDashboard'
+import LandingPage from '@/pages/LandingPage'
+import Login from '@/pages/Login'
+import AdminDashboard from '@/pages/AdminDashboard'
+import ManagerDashboard from '@/pages/EncargadoDashboard'
+import ColaboradorDashboard from '@/pages/ColaboradorDashboard'
 
-import CandidatoDashboard from './pages/CandidatoDashboard'
-import { Footer } from './components/Footer'
-import EncargadoDashboard from './pages/EncargadoDashboard'
-import SuperMasterDashboard from './pages/SuperMasterDashboard'
+import CandidatoDashboard from '@/pages/CandidatoDashboard'
+import { Footer } from '@/components/Footer'
+import EncargadoDashboard from '@/pages/EncargadoDashboard'
+import SuperMasterDashboard from '@/pages/SuperMasterDashboard'
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, isAuthenticated } = useAuth()
