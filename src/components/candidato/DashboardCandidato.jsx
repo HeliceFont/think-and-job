@@ -1,7 +1,10 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import favicon from '../assets/logo3B.svg'
-import { Sidebar } from './Sidebar'
+// Corregir la ruta subiendo un nivel más
+import favicon from '../../assets/logo3B.svg'
+// Corregir la ruta del Sidebar
+import { Sidebar } from '../../components/Sidebar'
+
 
 const user = {
     name: 'Tom Cook',

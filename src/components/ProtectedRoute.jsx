@@ -1,24 +1,22 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export const ProtectedRoute = ({ children, allowedRoles }) => {
-    const { user, isAuthenticated } = useAuth()
+    const { user, isAuthenticated, isLoading } = useAuth()
+    const location = useLocation()
     
-    // Añadimos logs para debuggear
-    console.log('ProtectedRoute:', {
-        isAuthenticated,
-        userRole: user?.role,
-        allowedRoles
-    })
+    if (isLoading) {
+        return <div>Cargando...</div> // O tu componente de loading
+    }
 
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
         console.log('Usuario no autenticado, redirigiendo a /login')
-        return <Navigate to="/login" />
+        return <Navigate to="/login" state={{ from: location }} replace />
     }
     
-    if (!allowedRoles.includes(user?.role)) {
+    if (!allowedRoles.includes(user.role)) {
         console.log('Rol no permitido, redirigiendo a /')
-        return <Navigate to="/" />
+        return <Navigate to="/" replace />
     }
 
     return children

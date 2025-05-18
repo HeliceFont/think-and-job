@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import favicon from '../assets/logo.svg' // Asegúrate de importar tu logo
 
 const Login = () => {
     const { login } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
@@ -20,26 +21,26 @@ const Login = () => {
                 token: response.token?.substring(0, 10) + '...'
             })
 
-            switch (response.user.role) {
-                case 'admin':
-                    navigate('/admin')
-                    break
-                case 'encargado':
-                    navigate('/encargado')
-                    break
-                case 'colaborador':
-                    navigate('/colaborador')
-                    break
-                case 'candidato':
-                    navigate('/candidato')
-                    break
-                default:
-                    navigate('/')
-            }
+            // Redirige a la ruta anterior o a la ruta según el rol
+            const from = location.state?.from?.pathname || getRoleDefaultPath(response.user.role)
+            navigate(from, { replace: true })
+            
         } catch (err) {
             console.error('Error:', err)
             setError(err.message)
         }
+    }
+
+    const getRoleDefaultPath = (role) => {
+        const paths = {
+            admin: '/admin',
+            encargado: '/encargado',
+            colaborador: '/colaborador',
+            candidato: '/candidato',
+            supermaster: '/supermaster',
+            master: '/master'
+        }
+        return paths[role] || '/'
     }
 
     return (
