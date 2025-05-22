@@ -4,7 +4,7 @@ const users = [
     {
         id: 1,
         email: 'admin@test.com',
-        // Guardamos el hash en lugar de la contraseña en texto plano
+        // Guardamos el hash en lugar de la contraseña en texto plano a modo de prueba
         password: bcrypt.hashSync('admin123', 10),
         role: 'admin',
         name: 'Admin User'
