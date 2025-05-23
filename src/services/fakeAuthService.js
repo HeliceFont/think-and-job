@@ -48,7 +48,7 @@ const users = [
     
 ]
 
-export const fakeAuthService = async ({ email, password }) => {
+const login = async ({ email, password }) => {
     // Simular delay de red
     await new Promise(resolve => setTimeout(resolve, 500))
     
@@ -58,14 +58,6 @@ export const fakeAuthService = async ({ email, password }) => {
         throw new Error('Usuario no encontrado')
     }
 
-    // Debug logs
-    console.log('Debug password:', {
-        
-        storedHash: user.password,
-        isMatch: bcrypt.compareSync(password, user.password)
-    })
-
-    // Comparar contraseña
     const isValidPassword = bcrypt.compareSync(password, user.password)
     if (!isValidPassword) {
         throw new Error('Contraseña incorrecta')
@@ -81,3 +73,9 @@ export const fakeAuthService = async ({ email, password }) => {
         token: `fake-jwt-token-${user.role}`
     }
 }
+
+const authService = {
+    login
+};
+
+export default authService;
