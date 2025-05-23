@@ -4,6 +4,7 @@ import { HeaderText } from './ui/HeaderText';
 import Magnet from './ui/Magnet';
 import banner from '../assets/banner.png';
 import Aurora from './ui/Aurora';
+import TrueFocus from './ui/TrueFocus';
 
 // // Define custom Tailwind CSS colors for the application
 // const colors = {
@@ -54,7 +55,7 @@ export const LandingMain = () => {
     return (
         <div>
             {/*  Main container with light bluish white background and Inter font */}
-            <div className="font-inter bg-teal-100 text-gray-800 mt-6">
+            <div className="font-sora bg-teal-100 text-gray-800 mt-6">
                 {/* Hero Section */}
                 <section id="home" className="relative text-white py-0 px-6 md:py-32 overflow-hidden">
                     {/* Contenedor del efecto Aurora con altura controlada */}
@@ -67,34 +68,45 @@ export const LandingMain = () => {
                             ]}
                             blend={0.6}
                             amplitude={0.8}
-                            speed={0.3}
+                            speed={0.5}
                             height="100%"
                             maxHeight="600px"
                         />
                     </div>
 
                     {/* Ajusta el espaciado y la estructura del contenido */}
-                    <div className="container mx-auto flex flex-col md:flex-row items-center justify-between z-20 relative">
-                        <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0 pt-16 md:pt-0"> {/* Añade padding top en móvil */}
-                            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-                                Think & Job
-                            </h1>
-                            <HeaderText
-                                texts={['RRHH Automatizado', 'Tu Equipo de RRHH Externalizado', 'Gestión de Nóminas Sin Errores', 'Planificación de Turnos Inteligente', ' Productividad en tu Empresa', 'Formación de Empleados Centralizada', ' Ahorro de Costes en RRHH Real', 'Firma Digital de Documentos', ' Contratación Simplificada', 'Flexibilidad Laboral Garantizada', ' Contratación Simplificada', 'Gestión de Personal Eficiente']}
-                                mainClassName="px-2 font-semibold sm:px-2 md:px-3 bg-cyan-300 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-                                staggerFrom={"last"}
-                                initial={{ y: "100%" }}
-                                animate={{ y: 0 }}
-                                exit={{ y: "-120%" }}
-                                staggerDuration={0.025}
-                                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                                rotationInterval={4000}
-                            />
-                            <h2 className="text-2xl text-teal-950 md:text-5xl font-extrabold leading-tight mb-6">
+                    <div className="container mx-auto flex flex-col md:flex-row items-start justify-between z-20 relative px-0">
+                        <div className="w-full md:w-1/2 flex flex-col items-start justify-start mb-10 md:mb-0 pt-16 md:pt-0 px-0">
+                            <div className="w-full max-w-fit"> {/* Cambiado aquí */}
+                                <TrueFocus 
+                                    sentence="Think & Job"
+                                    manualMode={false}
+                                    blurAmount={3}
+                                    borderColor="#FFB900"
+                                    glowColor="rgba(92, 223, 169, 0.6)"
+                                    animationDuration={1}
+                                    pauseBetweenAnimations={1}
+                                    className="text-left font-bold leading-tight"
+                                />
+                            </div>
+                            <div className="flex flex-col mt-12 mb-6  md:items-start"> {/* Contenedor añadido */}
+                                <HeaderText
+                                    texts={['RRHH Automatizado', 'Tu Equipo de RRHH Externalizado', 'Gestión de Nóminas Sin Errores', 'Planificación de Turnos Inteligente', ' Productividad en tu Empresa', 'Formación de Empleados Centralizada', ' Ahorro de Costes en RRHH Real', 'Firma Digital de Documentos', ' Contratación Simplificada', 'Flexibilidad Laboral Garantizada', ' Contratación Simplificada', 'Gestión de Personal Eficiente']}
+                                    mainClassName="px-2 font-bold sm:px-2 md:px-3 bg-[#FFB900] text-teal-950 overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg inline-flex w-fit"
+                                    staggerFrom={"last"}
+                                    initial={{ y: "100%" }}
+                                    animate={{ y: 0 }}
+                                    exit={{ y: "-120%" }}
+                                    staggerDuration={0.025}
+                                    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1 whitespace-nowrap" // Añadido whitespace-nowrap
+                                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                                    rotationInterval={4000}
+                                />
+                            </div>
+                            <h2 className="text-2xl text-teal-950 md:text-5xl font-extrabold leading-tight mb-6 text-left">
                                 El punto de encuentro entre la eficiencia empresarial y el talento profesional
                             </h2>
-                            <p className="text-lg text-teal-950 font-semibold md:text-xl mb-8 opacity-90">
+                            <p className="text-lg text-left  text-teal-950 font-semibold md:text-xl mb-8 opacity-90">
                                 Una plataforma para gestionar, contratar y crecer.
                             </p>
                             {/* <a href="#contact" className="inline-block bg-[#FFB203] text-[#105A63] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105">
@@ -110,7 +122,7 @@ export const LandingMain = () => {
                                     <p >Solicitar información!</p>
                                 </a>
                             </Magnet>
-                            <p className="mt-6 text-lg text-gray-700">
+                            <p className="mt-6 text-lg text-left text-gray-700">
                                 ¿Buscas empleo? <a href="#workers" className="text-teal-950 hover:underline font-semibold">Inscríbete en nuestra bolsa de trabajo</a>
                             </p>
                         </div>

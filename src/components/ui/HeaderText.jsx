@@ -155,7 +155,7 @@ export const HeaderText = forwardRef((props, ref) => {
         return () => clearInterval(intervalId);
     }, [next, rotationInterval, auto]);
 
-    const defaultBaseStyles = "flex flex-wrap whitespace-pre-wrap relative";
+    const defaultBaseStyles = "flex flex-wrap relative w-fit"; // Cambiado de whitespace-pre-wrap a w-fit
     const defaultSplitStyles = "inline-flex";
     const defaultElementStyles = "inline-block";
 
@@ -171,7 +171,7 @@ export const HeaderText = forwardRef((props, ref) => {
                 <motion.div
                     key={currentTextIndex}
                     className={cn(
-                        splitBy === "lines" ? "flex flex-col w-auto" : defaultBaseStyles
+                        splitBy === "lines" ? "flex flex-col w-auto" : "flex flex-wrap w-fit"
                     )}
                     layout
                     aria-hidden="true"
