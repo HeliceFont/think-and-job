@@ -48,7 +48,8 @@ const users = [
     
 ]
 
-const login = async ({ email, password }) => {
+// Exportamos la función login directamente
+export const login = async ({ email, password }) => {
     // Simular delay de red
     await new Promise(resolve => setTimeout(resolve, 500))
     
@@ -74,8 +75,5 @@ const login = async ({ email, password }) => {
     }
 }
 
-const authService = {
-    login
-};
-
-export default authService;
+// No necesitamos exportar un objeto authService
+// ya que estamos usando la función login directamente

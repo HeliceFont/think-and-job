@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Briefcase, Users, DollarSign, Clock, LayoutGrid, Search, MessageSquare, User, Mail, Phone, Building, MessageSquareText, CheckCircle, Quote } from 'lucide-react';
 import { HeaderText } from './ui/HeaderText';
 import Magnet from './ui/Magnet';
-import banner from '../assets/banner.png';
+
 import Aurora from './ui/Aurora';
 import TrueFocus from './ui/TrueFocus';
+import mujer1 from '../assets/mujer1.png';
+import mujer2 from '../assets/mujer2.png';
+import hombre from '../assets/hombre.png';
+import ScrollVelocity from './ui/ScrollVelocity';
 
 // // Define custom Tailwind CSS colors for the application
 // const colors = {
@@ -17,6 +21,9 @@ import TrueFocus from './ui/TrueFocus';
 
 export const LandingMain = () => {
     // Main App component for the landing page
+
+    // Añade esta línea para definir velocity
+    const [velocity] = useState(100);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -54,7 +61,7 @@ export const LandingMain = () => {
 
     return (
         <div>
-            {/*  Main container with light bluish white background and Inter font */}
+            {/*  Main container with light bluish white background and Sora font */}
             <div className="font-sora bg-teal-100 text-gray-800 mt-6">
                 {/* Hero Section */}
                 <section id="home" className="relative text-white py-0 px-6 md:py-32 overflow-hidden">
@@ -78,7 +85,7 @@ export const LandingMain = () => {
                     <div className="container mx-auto flex flex-col md:flex-row items-start justify-between z-20 relative px-0">
                         <div className="w-full md:w-1/2 flex flex-col items-start justify-start mb-10 md:mb-0 pt-16 md:pt-0 px-0">
                             <div className="w-full max-w-fit"> {/* Cambiado aquí */}
-                                <TrueFocus 
+                                <TrueFocus
                                     sentence="Think & Job"
                                     manualMode={false}
                                     blurAmount={3}
@@ -86,7 +93,8 @@ export const LandingMain = () => {
                                     glowColor="rgba(92, 223, 169, 0.6)"
                                     animationDuration={1}
                                     pauseBetweenAnimations={1}
-                                    className="text-left font-bold leading-tight"
+                                    className="text-left text-teal-950 font-bold leading-tight 
+                                        [text-shadow:_1px_1px_0_rgb(92_223_169),_-1px_-1px_0_rgb(92_223_169),_1px_-1px_0_rgb(92_223_169),_-1px_1px_0_rgb(92_223_169)]"
                                 />
                             </div>
                             <div className="flex flex-col mt-12 mb-6  md:items-start"> {/* Contenedor añadido */}
@@ -106,8 +114,8 @@ export const LandingMain = () => {
                             <h2 className="text-2xl text-teal-950 md:text-5xl font-extrabold leading-tight mb-6 text-left">
                                 El punto de encuentro entre la eficiencia empresarial y el talento profesional
                             </h2>
-                            <p className="text-lg text-left  text-teal-950 font-semibold md:text-xl mb-8 opacity-90">
-                                Una plataforma para gestionar, contratar y crecer.
+                            <p className="text-lg text-left  text-teal-950 font-semibold md:text-xl mb-8 pr-8 opacity-90">
+                                Una plataforma para gestionar, contratar y crecer. <br /> En THINK&JOB disponemos de un grupo de expertos con una gran formación y amplia experiencia en el ámbito de los Recursos Humanos.
                             </p>
                             {/* <a href="#contact" className="inline-block bg-[#FFB203] text-[#105A63] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-opacity-90 transition-all transform hover:scale-105">
                                 Solicitar información
@@ -126,30 +134,70 @@ export const LandingMain = () => {
                                 ¿Buscas empleo? <a href="#workers" className="text-teal-950 hover:underline font-semibold">Inscríbete en nuestra bolsa de trabajo</a>
                             </p>
                         </div>
-                        {/* Ajusta la imagen para dispositivos móviles */}
-                        <div className="md:w-1/2 flex justify-center items-center">
-                            <img
-                                src={banner}
-                                alt="Equipo de RRHH trabajando"
-                                className="rounded-xl md:ml-20 w-full md:w-auto transform hover:scale-105 transition-transform duration-300"
-                                style={{
-                                    maxWidth: '100%',
-                                    height: 'auto'
-                                }}
-                                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x400/105A63/FAFEFF?text=Imagen+no+disponible"; }}
-                            />
+                        {/* Columna derecha - Imágenes */}
+                        <div className="w-full md:w-1/2 relative h-[100px] sm:h-[400px] md:h-[500px] mt-0 md:mt-0">
+                            {/* Segunda mujer */}
+                            <div className="absolute left-0 bottom-0 w-32 sm:w-40 md:w-48 lg:w-64 z-20 transform hover:scale-105 transition-duration-300 [mask-image:linear-gradient(to_top,transparent,black_50%)]">
+                                <img
+                                    src={mujer2}
+                                    alt="Profesional mujer 2"
+                                    className="w-full h-auto filter brightness-90 object-cover"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = "https://via.placeholder.com/300x400/105A63/FAFEFF?text=Imagen+no+disponible";
+                                    }}
+                                />
+                            </div>
+
+                            {/* Primera mujer */}
+                            <div className="absolute right-0 bottom-0 w-32 sm:w-40 md:w-48 lg:w-64 z-10 transform hover:scale-105 transition-duration-300 [mask-image:linear-gradient(to_top,transparent,black_50%)]">
+                                <img
+                                    src={mujer1}
+                                    alt="Profesional mujer 1"
+                                    className="w-full h-auto filter brightness-90"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = "https://via.placeholder.com/300x400/105A63/FAFEFF?text=Imagen+no+disponible";
+                                    }}
+                                />
+                            </div>
+
+                            {/* Hombre central */}
+                            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-48 sm:w-52 md:w-58 lg:w-96 z-0 transform hover:scale-105 transition-duration-300 translate-y-4 [mask-image:linear-gradient(to_top,transparent,black_50%)]">
+                                <img
+                                    src={hombre}
+                                    alt="Profesional hombre"
+                                    className="w-full h-auto filter brightness-100"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = "https://via.placeholder.com/300x400/105A63/FAFEFF?text=Imagen+no+disponible";
+                                    }}
+                                />
+                            </div>
+
+
                         </div>
                     </div>
                 </section>
+                <div className='overflow-hidden relative z-10'>
+                <ScrollVelocity
+                    texts={['- RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 - RRHH en esencia 4.0 ', 'Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job  Think&Job ']}
+                    velocity={velocity}
+                    className="custom-scroll-text   font-thin"
+                />
+                </div>
 
                 {/* Companies Section */}
                 <section id="companies" className="py-16 px-6 md:py-24 bg-thinkjob-light-bluish-white">
                     <div className="container mx-auto">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-thinkjob-dark-green text-center mb-12">
-                            Externaliza tu departamento de RRHH y ahorra costes
+                            Somos especialistas en personas
                         </h2>
                         <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
-                            Think&Job se especializa en ayudar a empresas medianas y grandes a optimizar la gestión de su personal. Nos convertimos en tu departamento de Recursos Humanos externalizado: nuestro equipo de expertos, apoyado por software de última generación, se encarga de todas las tareas de administración de personal mientras tú te dedicas a hacer crecer tu negocio. La automatización de procesos administrativos, como la elaboración de nóminas, puede ahorrar hasta un 37% del tiempo dedicado a estas tareas, permitiendo que tu equipo interno se enfoque en actividades estratégicas. Además, al delegar tus RRHH con nosotros, externalizar resulta más económico que mantener un departamento interno y ganas flexibilidad para escalar en épocas de mayor trabajo.
+                            Nuestro objetivo es generar un impacto positivo tanto en las personas como en tu  equipo  de  trabajo.  Ofrecemos  profesionalidad  y  compromiso  con  plena dedicación en el sector cuidando lo que más importa, el bienestar de tu equipo.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -234,7 +282,7 @@ export const LandingMain = () => {
                                 </p>
                             </div>
                             {/* Worker Benefit 2 */}
-                            <div class="bg-thinkjob-dark-green/70 p-8 rounded-xl shadow-lg flex flex-col items-center text-center border border-thinkjob-light-green transform hover:scale-105 transition-transform duration-300">
+                            <div className="bg-thinkjob-dark-green/70 p-8 rounded-xl shadow-lg flex flex-col items-center text-center border border-thinkjob-light-green transform hover:scale-105 transition-transform duration-300">
                                 <CheckCircle className="text-thinkjob-light-green mb-4" size={48} />
                                 <h3 className="text-xl font-semibold mb-3">Candidatura fácil y centralizada</h3>
                                 <p className="text-gray-700">
@@ -328,7 +376,7 @@ export const LandingMain = () => {
                                     />
                                     <div>
                                         <p className="font-semibold text-thinkjob-dark-green">Lucía Gómez</p>
-                                        <p class="text-sm text-gray-500">CEO, Hoteles Sol</p>
+                                        <p className="text-sm text-gray-500">CEO, Hoteles Sol</p>
                                     </div>
                                 </div>
                             </div>
@@ -339,11 +387,11 @@ export const LandingMain = () => {
                             <h3 className="text-2xl font-bold text-thinkjob-dark-green mb-8">Empresas que confían en Think&Job:</h3>
                             <div className="flex flex-wrap justify-center items-center gap-8">
                                 {/* Placeholder logos */}
-                                <img src="https://placehold.co/150x80/FAFEFF/105A63?text=FashionRetail" alt="FashionRetail S.A. Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
-                                <img src="https://placehold.co/150x80/FAFEFF/105A63?text=TechServicios" alt="TechServicios Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
-                                <img src="https://placehold.co/150x80/FAFEFF/105A63?text=Hoteles+Sol" alt="Hoteles Sol Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
-                                <img src="https://placehold.co/150x80/FAFEFF/105A63?text=AgroMarket" alt="AgroMarket S.L. Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
-                                <img src="https://placehold.co/150x80/FAFEFF/105A63?text=TransLogix" alt="TransLogix Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
+                                {/* <img src="#" alt="FashionRetail S.A. Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
+                                <img src="#" alt="TechServicios Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
+                                <img src="#" alt="Hoteles Sol Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
+                                <img src="#" alt="AgroMarket S.L. Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} />
+                                <img src="#" alt="TransLogix Logo" className="h-16 w-auto object-contain rounded-lg shadow-md p-2" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x80/FAFEFF/105A63?text=Logo"; }} /> */}
                             </div>
                         </div>
                     </div>
@@ -470,7 +518,7 @@ export const LandingMain = () => {
                                 >
                                     <button
                                         type="submit"
-                                        >
+                                    >
                                         Enviar solicitud
                                     </button>
                                 </Magnet>

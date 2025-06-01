@@ -1,83 +1,70 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import fakeAuthService from '@/services/fakeAuthService'
+import { login as authLogin } from '../services/fakeAuthService'
 
-const AuthContext = createContext()
+const AuthContext = createContext(null)
 
-function useAuth() {
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(() => {
+        // Intentar recuperar el usuario del localStorage al inicio
+        const savedUser = localStorage.getItem('user')
+        return savedUser ? JSON.parse(savedUser) : null
+    })
+
+    const [token, setToken] = useState(() => {
+        return localStorage.getItem('token') || null
+    })
+
+    useEffect(() => {
+        // Guardar el usuario en localStorage cuando cambie
+        if (user) {
+            localStorage.setItem('user', JSON.stringify(user))
+        } else {
+            localStorage.removeItem('user')
+        }
+    }, [user])
+
+    useEffect(() => {
+        // Guardar el token en localStorage cuando cambie
+        if (token) {
+            localStorage.setItem('token', token)
+        } else {
+            localStorage.removeItem('token')
+        }
+    }, [token])
+
+    const login = async (credentials) => {
+        const response = await authLogin(credentials)
+        setUser(response.user)
+        setToken(response.token)
+        return response
+    }
+
+    const logout = () => {
+        setUser(null)
+        setToken(null)
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
+    }
+
+    const value = {
+        user,
+        token,
+        login,
+        logout,
+        isAuthenticated: !!user && !!token
+    }
+
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
         throw new Error('useAuth debe ser usado dentro de un AuthProvider')
     }
     return context
 }
-
-function AuthProvider({ children }) {
-    const [user, setUser] = useState(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [isLoading, setIsLoading] = useState(true) // Añadimos estado de carga
-
-    useEffect(() => {
-        const initAuth = () => {
-            const token = localStorage.getItem('token')
-            const savedUser = localStorage.getItem('user')
-            
-            if (token && savedUser) {
-                try {
-                    const parsedUser = JSON.parse(savedUser)
-                    setUser(parsedUser)
-                    setIsAuthenticated(true)
-                } catch (error) {
-                    console.error('Error al parsear usuario:', error)
-                    localStorage.removeItem('token')
-                    localStorage.removeItem('user')
-                }
-            }
-            setIsLoading(false)
-        }
-
-        initAuth()
-    }, [])
-
-    const login = async (credentials) => {
-        try {
-            const response = await fakeAuthService(credentials)
-            
-            if (response.user && response.token) {
-                setUser(response.user)
-                setIsAuthenticated(true)
-                localStorage.setItem('token', response.token)
-                localStorage.setItem('user', JSON.stringify(response.user))
-            }
-            
-            return response
-        } catch (error) {
-            console.error('Error en login:', error)
-            throw error
-        }
-    }
-
-    const logout = () => {
-        setUser(null)
-        setIsAuthenticated(false)
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-    }
-
-    if (isLoading) {
-        return <div>Cargando...</div> // O tu componente de loading
-    }
-
-    return (
-        <AuthContext.Provider value={{ 
-            user, 
-            isAuthenticated, 
-            login, 
-            logout,
-            isLoading 
-        }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
-
-export { AuthProvider, useAuth }

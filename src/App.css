@@ -32,3 +32,39 @@
     --color-4: #ffd740;  /* ámbar */
 }
 
+.scroll-indicator {
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1));
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    pointer-events: none;
+}
+
+.tab-transition {
+    transition: all 0.3s ease;
+}
+
+/* Añadir estos estilos nuevos */
+.swipe-container {
+    touch-action: pan-y pinch-zoom;
+}
+
+/* Indicador visual de swipe */
+.swipe-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+
+.swipe-indicator-left {
+    left: 8px;
+}
+
+.swipe-indicator-right {
+    right: 8px;
+}
