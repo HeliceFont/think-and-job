@@ -178,6 +178,7 @@ pnpm dev</code></pre>
     <h2>🧑‍💼 Portal del Candidato</h2>
     <p>El portal del candidato es una interfaz dedicada a los usuarios con el rol de "candidato". Les permite gestionar su información personal, documentos, buscar oportunidades de empleo y generar reportes sobre su actividad en la plataforma.</p>
 
+    <div class="section">
     <h3>DashboardCandidato</h3>
     <ul>
       <li><strong>Propósito:</strong> Es la página principal del candidato al iniciar sesión. Proporciona una vista general y acceso a las diferentes secciones del portal.</li>
@@ -236,6 +237,7 @@ pnpm dev</code></pre>
         </ul>
       </li>
     </ul>
+    </div>
   </div>
 
 </body>
