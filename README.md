@@ -174,5 +174,69 @@ pnpm dev</code></pre>
     </ul>
   </div>
 
+  <div class="section">
+    <h2>🧑‍💼 Portal del Candidato</h2>
+    <p>El portal del candidato es una interfaz dedicada a los usuarios con el rol de "candidato". Les permite gestionar su información personal, documentos, buscar oportunidades de empleo y generar reportes sobre su actividad en la plataforma.</p>
+
+    <h3>DashboardCandidato</h3>
+    <ul>
+      <li><strong>Propósito:</strong> Es la página principal del candidato al iniciar sesión. Proporciona una vista general y acceso a las diferentes secciones del portal.</li>
+      <li><strong>Características Clave:</strong>
+        <ul>
+          <li>Presenta un resumen de la actividad reciente o información relevante.</li>
+          <li>Navegación principal a través de un menú lateral (SidebarCandidato) que enlaza a Perfil, Portal de Empleo, Documentos y Crear Reporte.</li>
+          <li>Muestra contenido dinámico en una sección principal (DashboardSection) dependiendo de la opción seleccionada en el menú.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>PerfilSection</h3>
+    <ul>
+      <li><strong>Propósito:</strong> Permite al candidato ver y actualizar su información personal y profesional.</li>
+      <li><strong>Características Clave:</strong>
+        <ul>
+          <li>Visualización de datos como nombre, información de contacto, experiencia laboral, educación, etc.</li>
+          <li>Formularios para editar y guardar los cambios en el perfil.</li>
+          <li>Posibilidad de subir o cambiar foto de perfil.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>PortalEmpleoSection</h3>
+    <ul>
+      <li><strong>Propósito:</strong> Facilita la búsqueda y postulación a ofertas de empleo disponibles en la plataforma.</li>
+      <li><strong>Características Clave:</strong>
+        <ul>
+          <li>Listado de ofertas de empleo con filtros y opciones de búsqueda.</li>
+          <li>Visualización detallada de cada oferta (descripción, requisitos, empresa).</li>
+          <li>Funcionalidad para que el candidato se postule a las ofertas de su interés.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>DocumentosSection</h3>
+    <ul>
+      <li><strong>Propósito:</strong> Permite al candidato cargar y gestionar documentos relevantes para su perfil y postulaciones.</li>
+      <li><strong>Características Clave:</strong>
+        <ul>
+          <li>Subida de archivos (CV, cartas de presentación, certificados, etc.).</li>
+          <li>Listado de documentos subidos con opciones para ver o eliminar.</li>
+          <li>Organización de documentos.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>CrearReporte</h3>
+    <ul>
+      <li><strong>Propósito:</strong> Ofrece al candidato la funcionalidad de generar reportes sobre su actividad o información específica dentro del portal.</li>
+      <li><strong>Características Clave:</strong>
+        <ul>
+          <li>Selección de parámetros o tipo de reporte a generar (ej. historial de postulaciones, perfil completo en formato PDF).</li>
+          <li>Generación y descarga del reporte.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
 </body>
 </html>
