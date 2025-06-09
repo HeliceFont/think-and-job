@@ -1,41 +1,19 @@
 import React, { useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
-import { EyeIcon, XMarkIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline'
+import { EyeIcon, XMarkIcon, CalendarIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline'
 import { regiones, provinciasPorRegion, comunasPorRegion } from "../../data/chile.js";
 
 export const PerfilSection = () => {
     const [activeTab, setActiveTab] = useState('perfil')
+    const [selectedRegion, setSelectedRegion] = useState('')
+    const [selectedProvincia, setSelectedProvincia] = useState('')
+    const [availableProvincias, setAvailableProvincias] = useState([])
+    const [availableComunas, setAvailableComunas] = useState([])
     const [formData, setFormData] = useState({
-        nombre: '',
-        primerApellido: '',
-        segundoApellido: '',
-        telefono: '',
-        email: '',
         region: '',
         provincia: '',
-        comuna: '',
-        nacionalidad: '',
-        sexo: '',
-        fechaNacimiento: '',
-        fotoRut: null,
-        rut: '',
-        banco: '',
-        tipoCuenta: '',
-        numeroCuenta: '',
-        afpIps: '',
-        sistemaSalud: '',
-        estadoCivil: '',
-        calle: '',
-        departamento: '',
-        permisoConducir: '',
-        contraseñaActual: '',
-        nuevaContraseña: '',
-        repetirContraseña: ''
+        comuna: ''
     })
-    const [selectedRegion, setSelectedRegion] = useState('')
-    const [availableComunas, setAvailableComunas] = useState([])
-    const [availableProvincias, setAvailableProvincias] = useState([])
-    const [selectedProvincia, setSelectedProvincia] = useState('')
 
     const tabs = [
         { id: 'perfil', name: 'Datos Personales' },
@@ -60,51 +38,9 @@ export const PerfilSection = () => {
         trackMouse: true
     });
 
-    // Agregar estos arrays de opciones
-    const sistemaSalud = ["Fonasa", "Isapre"]
-    const afp = ["AFP Capital", "AFP Cuprum", "AFP Habitat", "AFP Modelo", "AFP PlanVital", "AFP ProVida", "IPS"]
-    const estadoCivil = ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]
-    const licenciasConducir = ["No poseo", "Clase A1", "Clase A2", "Clase B", "Clase C", "Clase D"]
-
-    const bancos = [
-        "Banco de Chile",
-        "Banco Estado",
-        "Banco Santander",
-        "Banco BCI",
-        "Banco Itaú",
-        "Scotiabank",
-        "Banco Security",
-        "Banco Falabella",
-        "Banco Ripley",
-        "Banco Internacional",
-        "Banco BICE",
-        "Banco Consorcio"
-    ];
-
-    const nacionalidades = [
-        "Chilena",
-        "Argentina",
-        "Boliviana",
-        "Colombiana",
-        "Ecuatoriana",
-        "Paraguaya",
-        "Peruana",
-        "Uruguaya",
-        "Venezolana",
-        "Otra"
-    ];
-
-    const getDateLimits = () => {
-        const today = new Date()
-        const maxDate = today.toISOString().split('T')[0] // Fecha actual
-        const minDate = '1950-01-01' // Fecha mínima permitida
-        return { maxDate, minDate }
-    }
-
     const handleRegionChange = (e) => {
         const regionId = e.target.value;
         setSelectedRegion(regionId);
-        setSelectedProvincia('');
         setFormData(prev => ({
             ...prev,
             region: regionId,
@@ -113,7 +49,6 @@ export const PerfilSection = () => {
         }));
         
         if (regionId) {
-            // Usar provinciasPorRegion en lugar de comunasPorRegion
             setAvailableProvincias(provinciasPorRegion[regionId] || []);
         } else {
             setAvailableProvincias([]);
@@ -131,11 +66,9 @@ export const PerfilSection = () => {
         }));
         
         if (provinciaId) {
-            // Usar el array de comunas directamente desde comunasPorRegion
             const comunasDisponibles = comunasPorRegion[selectedRegion]
                 .find(p => p.id === provinciaId)?.comunas || [];
 
-            // Convertir las comunas al formato necesario
             const comunasFormateadas = comunasDisponibles.map((comuna, index) => ({
                 id: `${provinciaId}${index + 1}`,
                 nombre: comuna
@@ -147,9 +80,15 @@ export const PerfilSection = () => {
         }
     };
 
+    // Agregar estos arrays de opciones
+    const sistemaSalud = ["Fonasa", "Isapre"]
+    const afp = ["AFP Capital", "AFP Cuprum", "AFP Habitat", "AFP Modelo", "AFP PlanVital", "AFP ProVida", "IPS"]
+    const estadoCivil = ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]
+    const licenciasConducir = ["No poseo", "Clase A1", "Clase A2", "Clase B", "Clase C", "Clase D"]
+
     return (
         <div className="bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 py-6">
                 <div className="bg-white rounded-lg shadow">
                     <div className="p-4 sm:p-6">
                         <h2 className="text-xl sm:text-2xl font-bold text-teal-950 text-center mb-4">
@@ -197,12 +136,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="nombre"
-                                                    value={formData.nombre}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        nombre: e.target.value
-                                                    }))}
                                                     className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
                                                     placeholder="Nombre"
                                                 />
@@ -215,12 +148,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="primerApellido"
-                                                    value={formData.primerApellido}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        primerApellido: e.target.value
-                                                    }))}
                                                     className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
                                                     placeholder="Primer Apellido"
                                                 />
@@ -233,12 +160,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="segundoApellido"
-                                                    value={formData.segundoApellido}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        segundoApellido: e.target.value
-                                                    }))}
                                                     className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
                                                     placeholder="Segundo Apellido"
                                                 />
@@ -255,12 +176,6 @@ export const PerfilSection = () => {
                                                     </span>
                                                     <input
                                                         type="tel"
-                                                        name="telefono"
-                                                        value={formData.telefono}
-                                                        onChange={(e) => setFormData(prev => ({
-                                                            ...prev,
-                                                            telefono: e.target.value
-                                                        }))}
                                                         className="block w-full rounded-r-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                         placeholder="Teléfono"
                                                     />
@@ -274,12 +189,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="email"
-                                                    name="email"
-                                                    value={formData.email}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        email: e.target.value
-                                                    }))}
                                                     className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 text-sm"
                                                     placeholder="ejemplo@correo.com"
                                                 />
@@ -371,21 +280,9 @@ export const PerfilSection = () => {
                                                 <label className="block text-sm font-medium text-teal-950">
                                                     Nacionalidad*
                                                 </label>
-                                                <select
-                                                    name="nacionalidad"
-                                                    value={formData.nacionalidad}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        nacionalidad: e.target.value
-                                                    }))}
-                                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
-                                                >
-                                                    <option value="">Selecciona una nacionalidad</option>
-                                                    {nacionalidades.map(nacionalidad => (
-                                                        <option key={nacionalidad} value={nacionalidad}>
-                                                            {nacionalidad}
-                                                        </option>
-                                                    ))}
+                                                <select className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm">
+                                                    <option value="">Selecciona una opción</option>
+                                                    {/* Agregar opciones */}
                                                 </select>
                                             </div>
 
@@ -402,23 +299,15 @@ export const PerfilSection = () => {
                                             </div>
 
                                             <div>
-                                                <label htmlFor="fechaNacimiento" className="block text-sm font-medium text-teal-950">
+                                                <label className="block text-sm font-medium text-teal-950">
                                                     Fecha de Nacimiento*
                                                 </label>
-                                                <div className="mt-1">
+                                                <div className="mt-1 relative">
                                                     <input
                                                         type="date"
-                                                        id="fechaNacimiento"
-                                                        name="fechaNacimiento"
-                                                        value={formData.fechaNacimiento}
-                                                        onChange={(e) => setFormData(prev => ({
-                                                            ...prev,
-                                                            fechaNacimiento: e.target.value
-                                                        }))}
-                                                        min={getDateLimits().minDate}
-                                                        max={getDateLimits().maxDate}
                                                         className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     />
+                                                    <CalendarIcon className="absolute right-3 top-2 h-5 w-5 text-gray-400" />
                                                 </div>
                                             </div>
 
@@ -457,12 +346,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="rut"
-                                                    value={formData.rut}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        rut: e.target.value
-                                                    }))}
                                                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="12.345.678-9"
                                                 />
@@ -472,21 +355,9 @@ export const PerfilSection = () => {
                                                 <label className="block text-sm font-medium text-teal-950">
                                                     Banco*
                                                 </label>
-                                                <select
-                                                    name="banco"
-                                                    value={formData.banco}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        banco: e.target.value
-                                                    }))}
-                                                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
-                                                >
-                                                    <option value="">Selecciona un banco</option>
-                                                    {bancos.map(banco => (
-                                                        <option key={banco} value={banco}>
-                                                            {banco}
-                                                        </option>
-                                                    ))}
+                                                <select className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm">
+                                                    <option value="">Selecciona una opción</option>
+                                                    {/* Agregar bancos */}
                                                 </select>
                                             </div>
 
@@ -508,12 +379,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="numeroCuenta"
-                                                    value={formData.numeroCuenta}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        numeroCuenta: e.target.value
-                                                    }))}
                                                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="123456789"
                                                 />
@@ -561,12 +426,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="calle"
-                                                    value={formData.calle}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        calle: e.target.value
-                                                    }))}
                                                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="Nombre de la calle y número"
                                                 />
@@ -578,12 +437,6 @@ export const PerfilSection = () => {
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="departamento"
-                                                    value={formData.departamento}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        departamento: e.target.value
-                                                    }))}
                                                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="Número de departamento (opcional)"
                                                 />
@@ -621,12 +474,6 @@ export const PerfilSection = () => {
                                             <div className="mt-1 relative">
                                                 <input
                                                     type="password"
-                                                    name="contraseñaActual"
-                                                    value={formData.contraseñaActual}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        contraseñaActual: e.target.value
-                                                    }))}
                                                     className="block w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="••••••••"
                                                 />
@@ -646,12 +493,6 @@ export const PerfilSection = () => {
                                             <div className="mt-1 relative">
                                                 <input
                                                     type="password"
-                                                    name="nuevaContraseña"
-                                                    value={formData.nuevaContraseña}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        nuevaContraseña: e.target.value
-                                                    }))}
                                                     className="block w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="••••••••"
                                                 />
@@ -671,12 +512,6 @@ export const PerfilSection = () => {
                                             <div className="mt-1 relative">
                                                 <input
                                                     type="password"
-                                                    name="repetirContraseña"
-                                                    value={formData.repetirContraseña}
-                                                    onChange={(e) => setFormData(prev => ({
-                                                        ...prev,
-                                                        repetirContraseña: e.target.value
-                                                    }))}
                                                     className="block w-full rounded-md border border-gray-300 px-3 py-2 pr-10 text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-amber-500 sm:text-sm"
                                                     placeholder="••••••••"
                                                 />

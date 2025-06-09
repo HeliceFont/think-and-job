@@ -2,6 +2,8 @@ import React from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from '@/context/AuthContext'
+import { WorkTimeProvider } from './context/WorkTimeContext'
+import { SocketProvider } from './context/SocketContext'
 
 
 import LandingPage from '@/pages/LandingPage'
@@ -14,6 +16,16 @@ import CandidatoDashboard from '@/pages/CandidatoDashboard'
 import { Footer } from '@/components/Footer'
 import EncargadoDashboard from '@/pages/EncargadoDashboard'
 import SuperMasterDashboard from '@/pages/SuperMasterDashboard'
+import { ColaboradorDashboard as ColaboradorDashboardComponent } from './components/colaborador/ColaboradorDashboard'
+import { FormacionSection } from './components/colaborador/FormacionSection'
+import { PRLSection } from './components/colaborador/PRLSection'
+import { DocumentacionSection } from './components/colaborador/DocumentacionSection'
+import { IncidenciasSection } from './components/colaborador/IncidenciasSection'
+import { HorariosSection } from './components/colaborador/HorariosSection'
+import { PerfilSection } from './components/colaborador/PerfilSection'
+import DashboardColaborador from './components/colaborador/DashboardColaborador'
+import Register from '@/pages/Register'
+import RecuperarPassword from '@/pages/RecuperarPassword'
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, isAuthenticated } = useAuth()
@@ -51,66 +63,88 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter basename="/">
-        <div className="min-h-screen flex flex-col">
-          <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute allowedRoles={['admin']}>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/supermaster"
-                element={
-                  <ProtectedRoute allowedRoles={['supermaster']}>
-                    <SuperMasterDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/master"
-                element={
-                  <ProtectedRoute allowedRoles={['master']}>
-                    <SuperMasterDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/encargado"
-                element={
-                  <ProtectedRoute allowedRoles={['encargado']}>
-                    <EncargadoDashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/colaborador"
-                element={
-                  <ProtectedRoute allowedRoles={['colaborador']}>
-                    <ColaboradorDashboard  />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/candidato"
-                element={
-                  <ProtectedRoute allowedRoles={['candidato']}>
-                    {/* cambiar a dashboard candidato */}
-                    <CandidatoDashboard />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <SocketProvider>
+        <WorkTimeProvider>
+          <BrowserRouter basename="/">
+            <div className="min-h-screen flex flex-col">
+              <div className="flex-grow">
+                <Routes>
+                  {/* Rutas públicas que no necesitan WorkTimeProvider */}
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/recuperar-password" element={<RecuperarPassword />} />
+                  
+                  {/* Rutas que necesitan WorkTimeProvider */}
+                  <Route
+                    path="/colaborador/*"
+                    element={
+                      <ProtectedRoute allowedRoles={['colaborador']}>
+                        <WorkTimeProvider>
+                          <Routes>
+                            <Route path="/" element={<DashboardColaborador />} />
+                            <Route path="perfil" element={<PerfilSection />} />
+                            <Route path="formacion" element={<FormacionSection />} />
+                            <Route path="prl" element={<PRLSection />} />
+                            <Route path="documentacion" element={<DocumentacionSection />} />
+                            <Route path="incidencias" element={<IncidenciasSection />} />
+                            <Route path="horarios" element={<HorariosSection />} />
+                          </Routes>
+                        </WorkTimeProvider>
+                      </ProtectedRoute>
+                    }
+                  />
+
+                  {/* Otras rutas que no necesitan WorkTimeProvider */}
+                  <Route
+                    path="/admin"
+                    element={
+                      <ProtectedRoute allowedRoles={['admin']}>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                      path="/supermaster"
+                      element={
+                        <ProtectedRoute allowedRoles={['supermaster']}>
+                          <SuperMasterDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/master"
+                      element={
+                        <ProtectedRoute allowedRoles={['master']}>
+                          <SuperMasterDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/encargado"
+                      element={
+                        <ProtectedRoute allowedRoles={['encargado']}>
+                          <EncargadoDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/candidato"
+                      element={
+                        <ProtectedRoute allowedRoles={['candidato']}>
+                          {/* cambiar a dashboard candidato */}
+                          <CandidatoDashboard />
+                        </ProtectedRoute>
+                      }
+                    />
+                    
+                </Routes>
+              </div>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </WorkTimeProvider>
+      </SocketProvider>
     </AuthProvider>
   )
 }

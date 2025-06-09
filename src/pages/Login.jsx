@@ -109,9 +109,12 @@ const Login = () => {
                                         </label>
                                     </div>
                                 </div>
-                                <a href="#" className="text-sm font-medium text-amber-500 hover:underline dark:text-amber-500">
+                                <Link 
+                                    to="/recuperar-password" 
+                                    className="text-sm font-medium text-amber-500 hover:underline dark:text-amber-500"
+                                >
                                     ¿Olvidaste tu contraseña?
-                                </a>
+                                </Link>
                             </div>
                             <button
                                 type="submit"

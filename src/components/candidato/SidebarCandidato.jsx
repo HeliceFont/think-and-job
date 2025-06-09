@@ -83,12 +83,14 @@ export const SidebarCandidato = () => {
                     <ul className="space-y-2 font-medium">
                         <li>
                             <a
-                                href={<DashboardSection />}
+                                href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setActiveSection('dashboard');
                                 }}
-                                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-400 group"
+                                className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-400 group ${
+                                    activeSection === 'dashboard' ? 'bg-amber-400' : ''
+                                }`}
                             >
                                 <svg className="w-5 h-5 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -99,12 +101,14 @@ export const SidebarCandidato = () => {
                         </li>
                         <li>
                             <a
-                                href={<PerfilSection />}
+                                href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setActiveSection('perfil');
                                 }}
-                                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-400 group"
+                                className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-400 group ${
+                                    activeSection === 'perfil' ? 'bg-amber-400' : ''
+                                }`}
                             >
                                 <svg className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
@@ -120,7 +124,9 @@ export const SidebarCandidato = () => {
                                     e.preventDefault();
                                     setActiveSection('portal');
                                 }}
-                                className="flex items-start p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-700 group"
+                                className={`flex items-start p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-700 group ${
+                                    activeSection === 'portal' ? 'bg-amber-400' : ''
+                                }`}
                             >
                                 <svg className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
@@ -135,7 +141,9 @@ export const SidebarCandidato = () => {
                                     e.preventDefault();
                                     setActiveSection('documentos');
                                 }}
-                                className="flex items-start p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-700 group"
+                                className={`flex items-start p-2 text-gray-900 rounded-lg dark:text-white hover:bg-amber-400 dark:hover:bg-amber-700 group ${
+                                    activeSection === 'documentos' ? 'bg-amber-400' : ''
+                                }`}
                             >
                                 <svg className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />

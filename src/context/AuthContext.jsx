@@ -39,6 +39,20 @@ export const AuthProvider = ({ children }) => {
         return response
     }
 
+    const register = async (formData) => {
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                body: formData
+            })
+            const data = await response.json()
+            if (!response.ok) throw new Error(data.message)
+            return data
+        } catch (error) {
+            throw new Error(error.message || 'Error en el registro')
+        }
+    }
+
     const logout = () => {
         setUser(null)
         setToken(null)
@@ -50,6 +64,7 @@ export const AuthProvider = ({ children }) => {
         user,
         token,
         login,
+        register,
         logout,
         isAuthenticated: !!user && !!token
     }
